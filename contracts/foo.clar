@@ -1,43 +1,32 @@
+;; Multiplayer Counter contract
 
-;; title: foo
-;; version:
-;; summary:
-;; description:
+;; principal: Stacks address
+(define-map balances principal uint)
 
-;; traits
-;;
-
-;; token definitions
-;;
-(define-data-var count int 0)
-(define-public (add-number (number int))
-    (let
-        (
-            (current-count count)
-        )
-
-        (var-set count (+ 1 number))
-        (ok (var-get count))
-    )
+(define-read-only (get-balance (who principal))
+    ;; map-get? returns an optional
+    (default-to u0 (map-get? balances who))
 )
 
 
-(add-number 5)
-;; constants
-;;
+;; Public function to add to a public account
+(define-public (faucet (who principal))
+  (let ((new-value (+ u10 (get-balance who))))
+    (map-set balances who new-value)
+    (ok new-value)
+  )
+)
 
-;; data vars
-;;
+(define-public (send (from principal) (to principal) (amount uint))
+  (let ((from-balance (get-balance from))
+        (to-balance (get-balance to)))
+    (if (>= from-balance amount) 
+        (begin 
+            (map-set balances from (- from-balance amount))
+            (map-set balances to (+ amount to-balance))
+            (ok "Sent"))
+        (err "Not enough balance"))
+  )
+)
 
-;; data maps
-;;
-
-;; public functions
-;;
-
-;; read only functions
-;;
-
-;; private functions
-;;
 

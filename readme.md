@@ -13,3 +13,6 @@ Install VSCode extension [here](https://marketplace.visualstudio.com/items?itemN
 
 [DAO hack and re-entrancy attacks](https://blog.chain.link/reentrancy-attacks-and-the-dao-hack/)
 
+[Clarity book](https://book.clarity-lang.org/)
+
+[Clarity docs](https://docs.stacks.co/clarity/clarity-crash-course)
