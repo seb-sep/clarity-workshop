@@ -5,9 +5,9 @@ Installing Clarity is easy:
 
 Mac: `brew install clarinet`
 
-Windows; `winget install clarinet`
+Windows: `winget install clarinet`
 
-`clarinet new` to write project boilerplace
+`clarinet new` to write project boilerplate
 
 Install VSCode extension [here](https://marketplace.visualstudio.com/items?itemName=HiroSystems.clarity-lsp)
 
